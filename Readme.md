@@ -16,6 +16,7 @@
     `pip install -r requirements.txt`
 09. Upgrade PIP using the below command [OPTIONAL]  
     `python -m pip install --upgrade pip`
-10. Run the following commands to start the application  
-    `uvicorn src.main:app --reload`
+10. Run the following commands to start the application
+    `CD src`  
+    `uvicorn main:app --reload`
 11. In the browser window open the URL which is shown on the command prompt
