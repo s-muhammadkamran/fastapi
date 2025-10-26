@@ -10,16 +10,16 @@ class Patient(BaseModel):
     
     age: Annotated[int, Field(..., description="Age of the patient", examples=[30, 50], gt=0, lt=120)]
     
-    gender: Annotated[Literal['Male', 'Female', 'Others'], Field(..., description="Gender of the patient", examples=["Male", "Female", "Others"])]
+    gender: Annotated[Literal['male', 'female', 'others'], Field(..., description="Gender of the patient", examples=["Male", "Female", "Others"])]
     
-    height: Annotated[float, Field(..., description="Height in cm", examples=[165, 174], gt=30, lt=300)]
+    height: Annotated[float, Field(..., description="Height in meters", examples=[1.65, 1.74], gt=0, lt=4)]
     
     weight: Annotated[float, Field(..., description="Weight in kgs", examples=[89, 79] ,gt=1, lt=500)]
     
     @computed_field
     @property
     def bmi(self) -> float:
-        return round(self.weight / ((self.height / 100) ** 2), 2)
+        return round(self.weight / (self.height ** 2), 2)
     
     @computed_field
     @property

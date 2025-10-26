@@ -2,9 +2,9 @@ from fastapi import FastAPI, Path, Query, HTTPException
 from fastapi.responses import JSONResponse
 from JsonCrudHelper import JsonCrudHelper
 from Patient import Patient
+from PatientUpdate import PatientUpdate
 
 app = FastAPI()
-
 helper = JsonCrudHelper()
 
 @app.get("/")
@@ -58,18 +58,27 @@ async def sort_patients(sort_by: str = Query(..., description='Sort on the basis
     
 @app.post("/add")
 async def add_patient(patient: Patient):
-    response = helper.write_patient(patient)
+    response = helper.add_patient(patient)
 
     if "Error" in response:
         raise HTTPException(status_code=400, detail=response["Error"])
     else:
         return JSONResponse(status_code=201, content={"Message": "Patient added successfully."})
     
-@app.put("/update")
-async def update_patient(patient: Patient):
-    response = helper.update_patient(patient)
+@app.put("/update/{patient_id}")
+async def update_patient(patient_id: str, patient: PatientUpdate):
+    response = helper.update_patient(patient_id, patient)
 
     if "Error" in response:
         raise HTTPException(status_code=400, detail=response["Error"])
     else:
         return JSONResponse(status_code=201, content={"Message": "Patient updated successfully."})
+    
+@app.delete("/delete/{patient_id}")
+async def delete_patient(patient_id: str = Path(..., description="Patient Id to delete", example="P001")):
+    response = helper.delete_patient(patient_id)
+
+    if "Error" in response:
+        raise HTTPException(status_code=404, detail=response["Error"])
+    else:
+        return JSONResponse(status_code=200, content={"Message": "Patient deleted successfully."})
