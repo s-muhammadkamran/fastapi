@@ -59,14 +59,11 @@ class JsonCrudHelper:
             patient_id = patient_id.strip().upper()
 
         patients_data = self.read_all_patients()
-        print(f"Updated Patient Data: {patient}")
                 
         if patient_id not in patients_data:
             response = {"Error": "Patient with provided ID not found"}
         else:
-            print("Inside Update")
             existing_p_info = patients_data[patient_id]
-            print(f"Existing Patient Data: {existing_p_info}")
             updated_p_info = patient.model_dump(exclude_unset=True, exclude_none=True)
 
             for key, value in updated_p_info.items():
