@@ -1,5 +1,7 @@
 from fastapi import FastAPI, Path, Query, HTTPException
+from fastapi.responses import JSONResponse
 from JsonCrudHelper import JsonCrudHelper
+from Patient import Patient
 
 app = FastAPI()
 
@@ -54,4 +56,20 @@ async def sort_patients(sort_by: str = Query(..., description='Sort on the basis
         response = sorted(response.values(), key=lambda x: x.get(sort_by, 0), reverse=(order=='desc'))
         return response
     
+@app.post("/add")
+async def add_patient(patient: Patient):
+    response = helper.write_patient(patient)
+
+    if "Error" in response:
+        raise HTTPException(status_code=400, detail=response["Error"])
+    else:
+        return JSONResponse(status_code=201, content={"Message": "Patient added successfully."})
     
+@app.put("/update")
+async def update_patient(patient: Patient):
+    response = helper.update_patient(patient)
+
+    if "Error" in response:
+        raise HTTPException(status_code=400, detail=response["Error"])
+    else:
+        return JSONResponse(status_code=201, content={"Message": "Patient updated successfully."})

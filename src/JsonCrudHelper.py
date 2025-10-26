@@ -43,22 +43,12 @@ class JsonCrudHelper:
         else:
             patient.id = patient.id.strip().upper()
         
-        patients = self.read_all_patients()        
-        if patient.id in patients:
+        patients_data = self.read_all_patients()        
+        if patient.id in patients_data:
             response = {"Error": "Patient ID already exists"}
         else:
-            patients[patient.id] = {
-                "name": patient.name,
-                "city": patient.city,
-                "gender": patient.gender,
-                "age": patient.age,
-                "height": patient.height,
-                "weight": patient.weight,
-                "bmi": patient.bmi,
-                "verdict": patient.verdict
-            } 
-            response = self.write_json(patients)
-
+            patients_data[patient.id] = patient.model_dump(exclude={'id'})
+            response = self.write_json(patients_data)
         return response    
                    
     def update_patient(self, patient: Patient):
@@ -67,19 +57,10 @@ class JsonCrudHelper:
         else:
             patient.id = patient.id.strip().upper()
 
-        patients = self.read_all_patients()
-        if patient.id in patients:
-            patients[patient.id] = {
-                "name": patient.name,
-                "city": patient.city,
-                "gender": patient.gender,
-                "age": patient.age,
-                "height": patient.height,
-                "weight": patient.weight,
-                "bmi": patient.bmi,
-                "verdict": patient.verdict
-            }
-            response = self.write_json(patients)
+        patients_data = self.read_all_patients()
+        if patient.id in patients_data:
+            patients_data[patient.id] = patient.model_dump(exclude={'id'})
+            response = self.write_json(patients_data)
         else:
             response = {"Error": "Patient not found"}
 
