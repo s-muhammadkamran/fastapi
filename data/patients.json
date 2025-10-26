@@ -298,15 +298,5 @@
         "weight": 120,
         "bmi": 36.21,
         "verdict": "Obese"
-    },
-    "P031": {
-        "name": "Ahmed Salama",
-        "city": "Jeddah",
-        "age": 30,
-        "gender": "Male",
-        "height": 165.0,
-        "weight": 89.0,
-        "bmi": 32.69,
-        "verdict": "Obese"
     }
 }

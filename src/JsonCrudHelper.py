@@ -78,3 +78,17 @@ class JsonCrudHelper:
             response = self.write_json(patients_data)
 
         return response
+    
+    def delete_patient(self, patient_id: str):
+        if patient_id is None or patient_id.strip() == "":
+            return {"Error": "Invalid Patient ID"}
+        else:
+            patient_id = patient_id.strip().upper()
+
+        patients_data = self.read_all_patients()        
+        if patient_id not in patients_data:
+            response = {"Error": "Patient with provided ID not found"}
+        else:
+            del patients_data[patient_id]
+            response = self.write_json(patients_data)
+        return response
