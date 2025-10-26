@@ -1,6 +1,6 @@
 import json
-from Patient import Patient
-from PatientUpdate import PatientUpdate
+from Model.Patient import Patient
+from Model.PatientUpdate import PatientUpdate
 
 class JsonCrudHelper:
     def __init__(self, file_path : str ='../data/patients.json'):

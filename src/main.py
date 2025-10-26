@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Path, Query, HTTPException
 from fastapi.responses import JSONResponse
-from JsonCrudHelper import JsonCrudHelper
-from Patient import Patient
-from PatientUpdate import PatientUpdate
+from DAL.JsonCrudHelper import JsonCrudHelper
+from Model.Patient import Patient
+from Model.PatientUpdate import PatientUpdate
 
 app = FastAPI()
 helper = JsonCrudHelper()
@@ -14,6 +14,10 @@ async def hello():
 @app.get("/about")
 async def about():
     return {"Info": "This API manages patient records and appointments."}
+
+@app.get("/health")
+async def health_check():
+    return {"Status": "API is healthy and running."}
 
 @app.get("/view")
 async def get_patients():
