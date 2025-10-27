@@ -8,9 +8,9 @@
 02. Create a folder and navigate to it  
 03. Clone this repository in that folder `GIT CLONE [REPO URL]`  
 04. Run the following command to build the Docker Image on your local machine.  
-    `docker build -t fastapi-app .`  
+    `docker build -t smkamran/fastapi-app .`  
 05. Run the below command to run the app  
-    `docker run --rm -p 8000:8000 -v "$PWD/data:/app/data" fastapi-app`  
+    `docker run --rm -p 8000:8000 -v "$PWD/data:/app/data" smkamran/fastapi-app`  
 06. Navigate to `http://127.0.0.1:8000/docs` in your browser  
 
 ## How to manually setup and run in development server on Windows
