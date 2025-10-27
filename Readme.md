@@ -1,6 +1,16 @@
-# This is a play ground for the FastAPI
+# This is a play ground for the FastAPI page for Patient Management System
 
-## How to setup and run in development server on Windows
+![Patient Management System APIs](./APIDocsPage.jpeg)
+
+## How to run on a Docker instance
+
+01. Run the following command to build the Docker Image on your local machine.
+    `docker build -t fastapi-app .`
+2.  Run the below command to run the app
+    `docker run --rm -p 8000:8000 -v "$PWD/data:/app/data" fastapi-app`
+3.  Navigate to http://127.0.0.1:8000/docs in your browser
+
+## How to manually setup and run in development server on Windows
 
 01. Install python
 02. Create a folder
