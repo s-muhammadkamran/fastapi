@@ -4,11 +4,12 @@
 
 ## How to run on a Docker instance
 
-01. Run the following command to build the Docker Image on your local machine.  
+1. Make sure Docker is installed and running  
+2. Run the following command to build the Docker Image on your local machine.  
     `docker build -t fastapi-app .`  
-2.  Run the below command to run the app  
+3.  Run the below command to run the app  
     `docker run --rm -p 8000:8000 -v "$PWD/data:/app/data" fastapi-app`  
-3.  Navigate to http://127.0.0.1:8000/docs in your browser  
+4.  Navigate to http://127.0.0.1:8000/docs in your browser  
 
 ## How to manually setup and run in development server on Windows
 
