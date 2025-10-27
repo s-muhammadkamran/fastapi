@@ -9,7 +9,7 @@
       `docker build -t fastapi-app .`  
 03. Run the below command to run the app  
       `docker run --rm -p 8000:8000 -v "$PWD/data:/app/data" fastapi-app`  
-04. Navigate to http://127.0.0.1:8000/docs in your browser  
+04. Navigate to `http://127.0.0.1:8000/docs` in your browser  
 
 ## How to manually setup and run in development server on Windows
 
@@ -30,5 +30,4 @@
 10. Run the following commands to start the application  
       `CD src`  
       `uvicorn main:app --reload`  
-11. In the browser window open the URL which is shown on the command prompt  
-      `http://127.0.0.1:8000/docs`  
+11. In the browser window open the URL which is shown on the command prompt i.e. `http://127.0.0.1:8000/docs`  
